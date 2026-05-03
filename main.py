@@ -4,7 +4,6 @@ import sys
 
 pygame.init()
 
-# Define using square dimensions based on the height
 DIMENSION = 720
 START_X = 50
 START_Y = 150
@@ -56,7 +55,7 @@ class ExecutionUnit:
         return selection[0], selection[1]
 
     def process(self):
-        # Executes the hill-climbing optimization algorithm
+        # This function will execute the hill climbing algorithm
         active_state = list(self.matrix)
         active_clashes = self.measure_clashes(active_state)
         counter = 0
@@ -73,7 +72,6 @@ class ExecutionUnit:
             possible_states = self.build_variants(active_state)
             best_state, best_clashes = self.pick_optimal(possible_states)
 
-            # Restarts with a random state if stuck in local minimum
             if best_clashes >= active_clashes:
                 active_state = [random.randint(0, self.capacity - 1) for _ in range(self.capacity)]
                 active_clashes = self.measure_clashes(active_state)
